@@ -22,11 +22,45 @@ public class MiddleNode {
         }
     }
 
+    /**
+     * 快慢指针
+     *
+     * 1 -> 2 -> 3 -> 4 -> 5
+     * 1 -> 3 -> 5 -> 7 -> 9
+     *
+     * 慢指针对应的永远是快指针的中位
+     * 遍历结束后，
+     * 如果快指针指向的是尾节点，说明当前链表长度为奇数，慢指针对应的是中间节点
+     * 如果快指针指向的是null，说明当前链表长度为偶数，慢指针对应的是中间两个节点的第二个节点
+     *
+     * @param head
+     * @return
+     */
     public ListNode middleNode(ListNode head) {
-
         ListNode slow = head;
         ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
 
+    /**
+     * 快慢指针
+     * 快指针早先一步
+     *
+     * 1 -> 2 -> 3 -> 4 -> 5
+     * 2 -> 4 -> 6 -> 8 -> 10
+     *
+     * 遍历结束后，
+     * 如果快指针指向的是尾节点，说明当前链表长度为偶数，慢指针对应的是中间两个节点的第一个节点
+     * 如果快指针指向的是null，说明当前链表长度为奇数，慢指针对应的是中间节点
+     *
+     */
+    public ListNode middleNode1(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head.next;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
